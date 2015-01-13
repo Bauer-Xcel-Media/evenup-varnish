@@ -15,6 +15,7 @@
 #
 class varnish::config (
   $enable = true,
+  $repo,
   $vcl_source,
   $listen_address,
   $listen_port,

@@ -70,6 +70,7 @@
 # Copyright 2013 EvenUp.
 #
 class varnish(
+  $repo                 = 'varnish-3.0',
   $enable               = true,
   $version              = 'latest',
   $vcl_source           = 'puppet:///modules/varnish/varnish.vcl',
@@ -91,6 +92,7 @@ class varnish(
 
   class { 'varnish::config':
     enable                => $enable,
+    repo                  => $repo,
     vcl_source            => $vcl_source,
     listen_address        => $listen_address,
     listen_port           => $listen_port,

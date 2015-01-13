@@ -30,5 +30,14 @@ DAEMON_OPTS="-a <%= scope.lookupvar('listen_address') %>:<%= scope.lookupvar('li
              -t <%= scope.lookupvar('ttl') %> \
              -f /etc/varnish/varnish.vcl \
              -S <%= scope.lookupvar('secret_file') %> \
-             -s "malloc,<%= scope.lookupvar('storage_size') %>" \
+             -s malloc,<%= scope.lookupvar('storage_size') %>"
+
+<% if scope.lookupvar('repo') == 'varnish-4.0' then %>
+DAEMON_OPTS="$DAEMON_OPTS \
+             -p thread_pool_min=<%= scope.lookupvar('min_threads') %> \
+             -p thread_pool_max=<%= scope.lookupvar('max_threads') %> \
+             -p thread_pool_timeout=<%= scope.lookupvar('thread_timeout') %>"
+<% else %>
+DAEMON_OPTS="$DAEMON_OPTS \
              -w <%= scope.lookupvar('min_threads') %>,<%= scope.lookupvar('max_threads') %>,<%= scope.lookupvar('thread_timeout') %>"
+<% end %>
