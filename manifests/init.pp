@@ -70,6 +70,7 @@
 # Copyright 2013 EvenUp.
 #
 class varnish(
+  $enable               = true,
   $version              = 'latest',
   $vcl_source           = 'puppet:///modules/varnish/varnish.vcl',
   $listen_address       = '0.0.0.0',
@@ -89,6 +90,7 @@ class varnish(
   }
 
   class { 'varnish::config':
+    enable                => $enable,
     vcl_source            => $vcl_source,
     listen_address        => $listen_address,
     listen_port           => $listen_port,

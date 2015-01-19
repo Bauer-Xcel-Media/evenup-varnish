@@ -14,6 +14,7 @@
 # Copyright 2013 EvenUp.
 #
 class varnish::config (
+  $enable = true,
   $vcl_source,
   $listen_address,
   $listen_port,
